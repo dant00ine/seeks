@@ -1,0 +1,19 @@
+<h1>Editing <%= @user.name %></h1>
+<%= form_for @user, url: {action: 'update'} do |f| %>
+  <%= f.text_field :email, input_html: { value: @user.email} %>
+  <%= f.text_field :name, input_html: { value: @user.name} %>
+  <%= f.password_field :password %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.submit %>
+<% end %>
+
+<%# form_for @user, url: {action: 'destroy'} do |f| %>
+  <%# f.submit "Delete Account" %>
+<%# end %>
+
+<%# form_tag(users_path, method: "delete") %>
+<form action="/users/<%= @user.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="delete">
+  <input id="Delete Account" type="submit" value="Delete Account">
+</form>
